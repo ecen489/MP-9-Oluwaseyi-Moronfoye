@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MachineLearning_App</string>
+    <string name="title_activity_camera">activity_camera</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

@@ -1,0 +1,93 @@
+apply plugin: 'com.android.application'
+
+project.ext.ASSET_DIR = projectDir.toString() + '/src/main/assets'
+
+assert file(project.ext.ASSET_DIR + "/graph.lite").exists()
+assert file(project.ext.ASSET_DIR + "/labels.txt").exists()
+
+android {
+    compileSdkVersion 26
+//    buildToolsVersion '27.0.3'
+    defaultConfig {
+        applicationId "com.example.machinelearning_app"
+        minSdkVersion 21 //15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    lintOptions {
+        abortOnError false
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    aaptOptions {
+        noCompress "tflite"
+        noCompress "lite"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+repositories {
+    maven {
+        url 'https://google.bintray.com/tensorflow'
+        google()
+    }
+}
+
+dependencies {
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:support-v4:26.1.0'
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+//        compile 'com.android.support:appcompat-v7:25.2.0'
+//        compile 'com.android.support.constraint:constraint-layout:1.1.0'
+//        compile 'com.android.support:design:25.2.0'
+//        compile 'com.android.support:support-annotations:25.3.1'
+//        compile 'com.android.support:support-v13:25.2.0'
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    implementation 'org.tensorflow:tensorflow-lite:+'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
+
+//        implementation 'com.google.firebase:firebase-ml-vision:26.1.0'
+//        implementation 'com.google.firebase:firebase-ml-vision-image-label-model:26.1.0'
+//        implementation 'com.google.firebase:firebase-ml-vision-face-model:17.0.2'
+//        implementation 'com.google.firebase:firebase-ml-model-interpreter:26.1.0'
+//        implementation 'com.google.firebase:firebase-core:26.1.0'
+
+    implementation 'com.google.firebase:firebase-ml-vision:18.0.1'
+    implementation 'com.google.firebase:firebase-ml-vision-image-label-model:17.0.2'
+    implementation 'com.google.firebase:firebase-ml-vision-face-model:17.0.2'
+    implementation 'com.google.firebase:firebase-ml-model-interpreter:16.2.3'
+    implementation 'com.google.firebase:firebase-core:16.0.1'
+
+//        classpath 'com.google.gms:google-services:26.1.0'
+
+
+    implementation 'com.android.support:design:26.1.0'
+    implementation 'com.android.support:support-annotations:26.1.0'
+    implementation 'com.android.support:support-v13:26.1.0'
+
+
+}
+apply plugin: 'com.google.gms.google-services'
